@@ -17,5 +17,10 @@ end
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/prime](https://hexdocs.pm/prime).
+be found at [http://hexdocs.pm/prime](https://hexdocs.pm/prime).
+
+# Run command: *LargestRightTruncatePrime.max_satisfy n*
+
+# Benchmark: *Benchwarmer.benchmark &LargestRightTruncatePrime.max_satisfy/1, n*
+
 
