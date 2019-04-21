@@ -1,7 +1,7 @@
 defmodule Prime do
   use Bitwise, only_operators: true
-  require Pow
-  def is_prime?(1, _t) do
+  def is_prime?(n, t\\10)
+  def is_prime?(n, _t) when n < 2 do
     false
   end
   def is_prime?(2, _t) do
@@ -10,7 +10,7 @@ defmodule Prime do
   def is_prime?(n, _t) when n != 2 and rem(n, 2)== 0 do
     false
   end
-  def is_prime?(n, t\\10) do
+  def is_prime?(n, t) do
     {d, s} = decompose(n - 1)
     is_prime?(n, d, s, t)
   end

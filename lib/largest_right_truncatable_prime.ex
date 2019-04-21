@@ -1,19 +1,30 @@
 defmodule LargestRightTruncatePrime do
+
   def max_satisfy (n) do
     head_nums = [2, 3, 5, 7]
     tail_nums = [1, 3, 7, 9]
     num_number = Kernel.trunc(:math.log10(n))
-    calculate_all_satisfy(num_number, head_nums, tail_nums)
-    |> Enum.filter(&(&1 <= n))
+    collect_all_satisfy(n, num_number, head_nums, tail_nums)
     |> Enum.take(-1)
     |> Enum.at(0)
   end
-  def calculate_all_satisfy(0, head_nums, _tail_nums) do
-    a
+  defp collect_all_satisfy(_n, 0, satisfies, _tail_nums) do
+    satisfies
   end
-  def calculate_all_satisfy(i, head_nums, tail_nums) do
-    new_head = for head <- head_nums, tail <- tail_nums, do: head*10 + tail
-    new_head = Enum.filter(new_head, &(Prime.is_prime?(&1) and &1 > 0))
-    calculate(i - 1, a ++ b, ak)
+  defp collect_all_satisfy(n, i, satisfies, tail_nums) do
+    new_satisfies = for head <- satisfies,
+                   tail <- tail_nums,
+                   candidate = head*10 + tail,
+                   is_satisfy?(n, candidate),
+                   do: candidate
+    if length(new_satisfies) == 0 do
+      satisfies
+    else
+      collect_all_satisfy(n, i - 1, new_satisfies, tail_nums)
+    end
+
+  end
+  defp is_satisfy?(n, candidate) do
+    candidate > 0 and candidate < n and Prime.is_prime?(candidate)
   end
 end
